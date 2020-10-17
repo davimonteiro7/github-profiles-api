@@ -1,5 +1,5 @@
 const userModel = require('../models/userModel');
-const client = require('../services/user-client');
+const client = require('../services/userClients');
 
 module.exports = (app) =>{
     app.get('/get-user', (req, res) => {
