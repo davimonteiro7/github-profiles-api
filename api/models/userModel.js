@@ -1,26 +1,16 @@
-const clients = require('../services/userClients');
+class UserModel {
+    constructor(userClient){
+        this._userClient = userClient;
+        this.user = 
+        this.userRepos;
+    }
 
-function userModel(clients) {
-    this._clients = clients;
-    this.user = {};
-    this._clients.getUser('davimonteiro7', (err, req, res, obj) => {
-        this.user = obj;
-    })
-    console.log(this.user);
-    return this.user;   
+    getUser(username){
+        return this._userClient.getUserByUserame(username);
+    }
+
+    getRepos(){
+    }
 }
 
-userModel(clients);
-//userModel.prototype.getUserByName = (name) => {
-//    this.user = {};
-//    this._clients.getUser(name, (err, req, res, obj) => {
-//        this.user = obj;
-//    })
-//    console.log(this.user);
-//    return this.user;       
-//}
-//
-//
-//module.exports = () => {
-//    return userModel();
-//};
+module.exports = UserModel

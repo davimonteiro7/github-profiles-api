@@ -1,16 +1,26 @@
-const assert = require('assert');
 const clients = require('restify-clients');
 
-const userName = 'davimonteiro7';
-
-function userClients(){
-    this._client = clients.createJsonClient({
-        url: `https://api.github.com`,
-        version: '~1.0.0'
-    });
+class userClients {
+    constructor(clients){
+        this._client = clients.createJsonClient({
+            url: `https://api.github.com`,
+            version: '~1.0.0'
+        });
+    }
+    getUserByUserame(username) {
+        return new Promise((resolve, reject) => {
+            this._client.get(`/users/${username}`, (err, req, res, data) => {
+                if (err) {
+                    return reject('User not founded!')
+                }
+                else {
+                    return resolve(data);
+                }
+            });
+        })    
+    } 
 }
-userClients.prototype.getUser = (username, callback) => {
-    this_client.get(`/users/${username}`, callback);
-} 
 
-module.exports = userClients;
+module.exports = () => {
+    return new userClients(clients);
+}

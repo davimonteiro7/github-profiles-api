@@ -1,13 +1,14 @@
-const userModel = require('../models/userModel');
-const client = require('../services/userClients');
+const userClient = require('../services/userClients')();
+const UserModel = require('../models/userModel');
 
-module.exports = (app) =>{
-    app.get('/get-user', (req, res) => {
-        const userName  = req.body.name;
-        
-        const userModel = new app.models.userModel(client);
-        userModel.getUserByName(userName, () => {
 
+module.exports = (app) => {
+    app.get('/user/:username', (req, res) => {
+        const username  = req.params.username;
+        const userModel = new UserModel(userClient);
+
+        userModel.getUser(username).then(user => {
+            res.json(user);
         });
     });
 }
