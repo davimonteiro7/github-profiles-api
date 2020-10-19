@@ -6,8 +6,9 @@ class userClients {
             url: `https://api.github.com`,
             version: '~1.0.0'
         });
+
     }
-    getUserByUserame(username) {
+    getUser(username) {
         return new Promise((resolve, reject) => {
             this._client.get(`/users/${username}`, (err, req, res, data) => {
                 if (err) {
@@ -18,7 +19,20 @@ class userClients {
                 }
             });
         })    
-    } 
+    }
+    
+    getRepos(username){
+        return new Promise((resolve, reject) => {
+            this._client.get(`/users/${username}/repos`, (err, req, res, data) => {
+                if (err) {
+                    return reject('User not founded!')
+                }
+                else {
+                    return resolve(data);
+                }
+            });
+        })
+    }
 }
 
 module.exports = () => {

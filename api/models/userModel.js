@@ -1,16 +1,8 @@
 class UserModel {
-    constructor(userClient){
+    constructor(userClient, username){
         this._userClient = userClient;
-        this.user = 
-        this.userRepos;
-    }
-
-    getUser(username){
-        return this._userClient.getUserByUserame(username);
-    }
-
-    getRepos(){
+        this.getUser = this._userClient.getUser(username).then(user => user );
+        this.getRepos = this._userClient.getRepos(username).then(repos => repos);
     }
 }
-
 module.exports = UserModel
