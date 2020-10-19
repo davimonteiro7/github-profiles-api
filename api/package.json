@@ -14,6 +14,7 @@
     "assert": "^2.0.0",
     "consign": "^0.1.6",
     "express": "^4.17.1",
+    "hbs": "^4.1.1",
     "restify": "^8.5.1",
     "restify-clients": "^4.0.0"
   },

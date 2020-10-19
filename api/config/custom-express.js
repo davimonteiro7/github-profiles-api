@@ -1,12 +1,14 @@
 const express = require('express');
 const consign = require('consign');
-const bodyParser = require('body-parser');
-
+const path = require('path');
 
 module.exports = () => {
     const app = express();
     
-    app.use(bodyParser.urlencoded({extended: true}))
+    app.use(express.static(path.resolve('./views/public')))
+        .use(express.urlencoded({extended: true}))
+        .set('views', path.resolve('./views'))
+        .set('view engine', 'hbs');
 
     consign()
         .include('controllers')

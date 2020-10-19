@@ -1,8 +1,11 @@
 const userClient = require('../services/userClients')();
 const UserModel = require('../models/userModel');
 
-
 module.exports = (app) => {
+    app.get('/',(req, res) => {
+        res.render('index');
+    });
+
     app.get('/user/:username', (req, res) => {
         const username  = req.params.username;
         const userModel = new UserModel(userClient, username);
@@ -18,16 +21,14 @@ module.exports = (app) => {
                     return repos.map(repo => ({
                         stars:repo.stargazers_count,
                         forks:repo.forks,
-                        repo_name:repo.name
-                        
+                        repo_name:repo.name 
                     })).sort((a, b) => {
                         return b.forks - a.forks || b.stars - a.stars;
                     }).splice(0,4);
                 })
             }
             console.log(userWithRepos);
-            res.json(userWithRepos)
+            res.json(userWithRepos);
         });
     });
 }
-
