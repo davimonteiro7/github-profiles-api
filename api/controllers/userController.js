@@ -7,7 +7,6 @@ module.exports = (app) => {
         const username  = req.params.username;
         const userModel = new UserModel(userClient, username);
         
-        
         userModel.getUser.then(async user => {
             var userWithRepos = {
                 username: user.login,
@@ -15,8 +14,16 @@ module.exports = (app) => {
                 name: user.name,
                 followers: user.followers,
                 num_repos: user.public_repos,
-                repos: await userModel.getRepos.then(repos => repos)
-
+                repos: await userModel.getRepos.then(repos => {
+                    return repos.map(repo => ({
+                        stars:repo.stargazers_count,
+                        forks:repo.forks,
+                        repo_name:repo.name
+                        
+                    })).sort((a, b) => {
+                        return b.forks - a.forks || b.stars - a.stars;
+                    }).splice(0,4);
+                })
             }
             console.log(userWithRepos);
             res.json(userWithRepos)
