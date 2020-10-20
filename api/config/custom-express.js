@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = () => {
     const app = express();
     
-    app.use(express.static(path.resolve('./views/public')))
+    app.use('/public',express.static(path.resolve('./views/public')))
         .use(express.urlencoded({extended: true}))
         .set('views', path.resolve('./views'))
         .set('view engine', 'hbs');

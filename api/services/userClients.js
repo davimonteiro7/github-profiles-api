@@ -12,7 +12,7 @@ class userClients {
         return new Promise((resolve, reject) => {
             this._client.get(`/users/${username}`, (err, req, res, data) => {
                 if (err) {
-                    return reject('User not founded!')
+                    return reject(err)
                 }
                 else {
                     return resolve(data);

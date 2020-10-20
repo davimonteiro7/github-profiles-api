@@ -5,18 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Github Profiles</title>
 
-        <script src="/api/views/index.js"></script>
+        <link rel="stylesheet" href="./public/css/index.css">
+
+        <script src="public/scripts/index.js"></script>
+
     </head>
     <body>
         <div id="search-page">
             <div id="container">
-                    <input type="text" name="username" placeholder="insert a github username...">
-                    <button onclick="searchUser()">
-                        Search
-                    </button>
-                </form>
+                <div class=".search-bar">  
+                    <form action="/user" method="GET">
+                        <input name="username" type="text" placeholder="insert a github username...">
+                        <input type="submit" name="" value="Search">
+                    </form>
+                </div>
+                <div class="search-result">
+                    <span hidden
+                        data-name="{{userWithRepos.name}}"
+                        data-username="{{userWithRepos.username}}"
+                        data-avatar="{{userWithRepos.avatar}}"
+                        data-followers="{{userWithRepos.followers}}"
+                        data-num_repos="{{userWithRepos.repo_name}}"
+                    ></span>
+                    <p>RESULTADOS</p>
+
+                </div>
             </div>
         </div>
-        
     </body>
 </html>
