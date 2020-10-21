@@ -14,23 +14,32 @@
         <div id="search-page">
             <div id="container">
                 <div class=".search-bar">  
-                    <form action="/user" method="GET">
+                    <form id="send-username" action="/user" method="POST">
                         <input name="username" type="text" placeholder="insert a github username...">
-                        <input type="submit" name="" value="Search">
+                        <input type="submit" name="" value="Search" onclick="searchUser()">
                     </form>
                 </div>
-                <div class="search-result">
-                    <span hidden
-                        data-name="{{userWithRepos.name}}"
-                        data-username="{{userWithRepos.username}}"
-                        data-avatar="{{userWithRepos.avatar}}"
-                        data-followers="{{userWithRepos.followers}}"
-                        data-num_repos="{{userWithRepos.repo_name}}"
-                    ></span>
-                    <p>RESULTADOS</p>
+                <div id="profile-info" class="search-result">
 
-                </div>
+                    <p>GITHUB USER PROFILE</p>
+                    <p>avatar: <img src="{{userWithRepos.avatar}}"></p>          
+                    <p>name: {{userWithRepos.name}}</p> 
+                    <p>username: {{userWithRepos.username}}</p>
+                    <p>followers: {{userWithRepos.followers}}</p>
+                    <p>num_repos: {{userWithRepos.num_repos}}</p>        
+                
+                </div>          
             </div>
         </div>
+        <script>
+            $('#send-username').on("submit", () => {
+                $.ajax({
+                    url: '/user',
+                    type: 'POST',
+                    cache: false,
+                    data: {$('#send-username').serializer()}
+                });
+            });
+        </script>
     </body>
 </html>

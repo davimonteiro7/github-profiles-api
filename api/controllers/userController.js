@@ -3,10 +3,13 @@ const UserModel = require('../models/userModel');
 
 module.exports = (app) => {
     app.get('/',(req, res) => {
+
+
         res.render('index');
     })
-    app.get('/user', (req, res) => {
-        const username  = req.query.username;
+    
+    app.post('/user', (req, res) => {
+        const username  = req.body.username;
         console.log(username);
         const userModel = new UserModel(userClient, username);
         
@@ -15,6 +18,7 @@ module.exports = (app) => {
                 console.log('User not found!');
                 res.send('User not found!')
             }
+
             var userWithRepos = {
                 username: user.login,
                 avatar: user.avatar_url,
@@ -32,8 +36,7 @@ module.exports = (app) => {
                 })
             }
             console.log(userWithRepos);
-            res.render('index', {userWithRepos})
-
+            res.redirect('/')
         }).catch(err => {
             res.json(err);
         });
