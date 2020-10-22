@@ -6,40 +6,45 @@
         <title>Github Profiles</title>
 
         <link rel="stylesheet" href="./public/css/index.css">
-
-        <script src="public/scripts/index.js"></script>
-
     </head>
     <body>
         <div id="search-page">
             <div id="container">
+                <span id="dataProfile" data-profile="{{this.data}}" hidden></span>
                 <div class=".search-bar">  
-                    <form id="send-username" action="/user" method="POST">
-                        <input name="username" type="text" placeholder="insert a github username...">
-                        <input type="submit" name="" value="Search" onclick="searchUser()">
+                    <form id="send-username" action="/profile" method="GET">
+                        <input name="username" type="text" placeholder="insert a github username..." required>
+                        <input type="submit" name="" value="Search">
                     </form>
                 </div>
-                <div id="profile-info" class="search-result">
+                {{#if this.data.name}}
+                    <div name="profile" id="profile-info">
+                        <img src="{{this.data.avatar}}">
+                        <p>NOME: {{this.data.name}}</p>
+                        <p>USERNAME: {{this.data.username}}</p>
+                        <p>FOLLOWERS: {{this.data.followers}}</p>
+                        <p>REPOSITORIES: {{this.data.num_repos}}</p>
+                        <div id="profile-repos">
+                            <p>Top 4 Repositories:</p>
+                            {{#each this.data.repos}}
+                            <p>{{this.repo_name}} | {{this.forks}} | {{this.stars}}</p>
+                            {{/each}}
+                        </div>
 
-                    <p>GITHUB USER PROFILE</p>
-                    <p>avatar: <img src="{{userWithRepos.avatar}}"></p>          
-                    <p>name: {{userWithRepos.name}}</p> 
-                    <p>username: {{userWithRepos.username}}</p>
-                    <p>followers: {{userWithRepos.followers}}</p>
-                    <p>num_repos: {{userWithRepos.num_repos}}</p>        
-                
-                </div>          
+                    </div>
+                {{else}}
+                    {{#if this.data.validation}}
+                    <div name="profile" id="profile-info">
+                        <span class="alert">{{this.data.validation}}</span>
+                    </div>
+                        
+                    {{else}}
+                    <div name="profile" id="profile-info"></div>
+                    {{/if}}
+                {{/if}}
+                          
             </div>
         </div>
-        <script>
-            $('#send-username').on("submit", () => {
-                $.ajax({
-                    url: '/user',
-                    type: 'POST',
-                    cache: false,
-                    data: {$('#send-username').serializer()}
-                });
-            });
-        </script>
+        <script src="./public/scripts/index.js"></script>
     </body>
 </html>
