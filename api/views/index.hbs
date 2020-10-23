@@ -8,42 +8,40 @@
         <link rel="stylesheet" href="./public/css/index.css">
     </head>
     <body>
-        <div id="search-page">
-            <div id="container">
+        <div id="root">
+            <div id="container-search">
                 <span id="dataProfile" data-profile="{{this.data}}" hidden></span>
-                <div class=".search-bar">  
-                    <form id="send-username" action="/profile" method="GET">
-                        <input name="username" type="text" placeholder="insert a github username..." required>
-                        <input type="submit" name="" value="Search">
+                <div class="search-bar">  
+                    <form class="send-username" action="/profile" method="GET">
+                        <input class="search-field" name="username" type="text" placeholder="Insert a github username..." required>
+                        <input class="search-button"type="submit" value="Search">
                     </form>
                 </div>
+            </div>
+            
                 {{#if this.data.name}}
-                    <div name="profile" id="profile-info">
+                <div id="container-result">
+                    <div class="profile">
                         <img src="{{this.data.avatar}}">
-                        <p>NOME: {{this.data.name}}</p>
-                        <p>USERNAME: {{this.data.username}}</p>
-                        <p>FOLLOWERS: {{this.data.followers}}</p>
-                        <p>REPOSITORIES: {{this.data.num_repos}}</p>
-                        <div id="profile-repos">
-                            <p>Top 4 Repositories:</p>
-                            {{#each this.data.repos}}
-                            <p>{{this.repo_name}} | {{this.forks}} | {{this.stars}}</p>
-                            {{/each}}
+                        <div class="basic-info">
+                            <p>NOME: {{this.data.name}}</p>
+                            <p>USERNAME: {{this.data.username}}</p>
+                            <p>FOLLOWERS: {{this.data.followers}}</p>
+                            <p>REPOSITORIES: {{this.data.num_repos}}</p>
                         </div>
-
                     </div>
+                    <div class="profile-repos">
+                        <p>Top 4 Repositories:</p>
+                        {{#each this.data.repos}}
+                        <p> Repository: {{this.repo_name}}  |  Forks: {{this.forks}}  |  Stars: {{this.stars}}</p>
+                        {{/each}}
+                    </div>
+                </div>
                 {{else}}
                     {{#if this.data.validation}}
-                    <div name="profile" id="profile-info">
-                        <span class="alert">{{this.data.validation}}</span>
-                    </div>
-                        
-                    {{else}}
-                    <div name="profile" id="profile-info"></div>
+                    <span class="alert">{{this.data.validation}}</span>
                     {{/if}}
-                {{/if}}
-                          
-            </div>
+                {{/if}}    
         </div>
         <script src="./public/scripts/index.js"></script>
     </body>

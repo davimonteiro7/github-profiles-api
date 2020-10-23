@@ -1,6 +1,82 @@
+
+#container-search {
+    display: flex;
+    justify-content: center;
+    padding:  100px;
+    background-color: silver;
+}
+
+.search-bar {
+    width: 600px;
+    height: 50px;
+    display: flex;
+}
+.send-username {
+    width: 600px;
+    height: 50px;
+}
+
+input.search-field {
+    padding-left: 5px;
+    width: 500px;
+    height: 50px;
+    border-radius: 20px;
+    border: black solid;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+input.search-button {
+    height: 60px;
+    border-radius: 20px;
+    border: black solid;
+    font-size: 20px;
+}
+
+#container-result {
+    background-color: lavender;
+    width: 700px;
+    padding: 30px;
+    margin: 30px auto;   
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile img {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+          
+}
+.profile .basic-info {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.profile-repos {
+    margin: 20px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
 .alert {
+    display: flex;
+    width: 550px;
+    justify-content: center;
+    margin: 20px auto;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 20px;
     background-color: #f44336; /* Red */
-    color: white;
+    color: black;
+    border-radius: 30px;
     margin-bottom: 15px;
 }

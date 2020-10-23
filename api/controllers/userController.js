@@ -33,8 +33,22 @@ module.exports = (app) => {
             res.render('index', {data: userWithRepos});
         }).catch(err => {
             console.log('This username is not valid!');
+
+            //const fakeDataUser = {
+            //    username:'fake username',
+            //    avatar:'https://avatars1.githubusercontent.com/u/60819461?s=460&u=d568c0a9672c4c0aa38a37a236be50daa8790c62&v=4',
+            //    name:'fake',
+            //    followers:3,
+            //    num_repos:4,
+            //    repos: [{
+            //        stars:2,
+            //        forks:4,
+            //        repo_name: 'fake repo'
+            //    }]
+            //}
+            //res.render('index', {data: fakeDataUser})
             res.render('index', {data: {
-                validation: 'This username is not valid!'
+                validation: 'Please, enter a valid username!'
             }});
         });
     });
